@@ -1,0 +1,15 @@
+﻿<h1>Home</h1>
+
+<button class="button button-blue-back" type="button" id="button-load">Load Programming Languages</button>
+
+<div class="box programming-languages-content">
+
+</div>
+
+<script>
+    document.querySelector("#button-load").addEventListener("click", async function() {
+       var response = await fetch("programming-languages");
+       var languages = await response.text();
+       document.querySelector(".programming-languages-content").innerHTML = languages;
+    });
+</script>

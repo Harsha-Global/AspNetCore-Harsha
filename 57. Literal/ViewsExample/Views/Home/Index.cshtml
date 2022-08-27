@@ -1,0 +1,36 @@
+﻿@using ViewsExample.Models
+@{
+    string appTitle = "Asp.Net Core Demo App";
+    List<Person> people = new List<Person>()
+    {
+        new Person() { Name = "John", DateOfBirth = DateTime.Parse("2000-05-06"), PersonGender = Gender.Male},
+        new Person() { Name = "Linda", DateOfBirth = DateTime.Parse("2005-01-09"), PersonGender = Gender.Female},
+        new Person() { Name = "Susan", DateOfBirth = DateTime.Parse("2008-07-12"), PersonGender = Gender.Other}
+    };
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@appTitle</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <h1>Welcome</h1>
+    @for (int i = 0; i < 2; i++)
+    {
+        Person person = people[i];
+        @*<span>Hello to</span>*@
+        @:Hello to  
+        <div>
+            @person.Name
+            <span>, </span>
+            <span>@person.PersonGender</span>
+            @if (person.DateOfBirth != null)
+            {
+                <span>@person.DateOfBirth.Value.ToString("MM/dd/yyyy")</span>
+            }
+        </div>
+    }
+
+</body>
+</html>

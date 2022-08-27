@@ -1,0 +1,45 @@
+﻿@using ViewsExample.Models
+@model IEnumerable<Person>
+
+<!DOCTYPE html>
+<html>
+<head>
+ <title>@ViewBag.appTitle</title>
+ <meta charset="utf-8" />
+ <link href="~/StyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+ <div class="page-content">
+  <h1>Persons</h1>
+
+  <div>
+  @foreach (Person person in Model)
+  {
+   <div class="box float-left w-50">
+    <h3>@person.Name</h3>
+    <table class="table w-100">
+     <tbody>
+      <tr>
+       <td>Gender</td>
+       <td>@person.PersonGender</td>
+      </tr>
+      <tr>
+       <td>Date of Birth</td>
+       <td>@person.DateOfBirth?.ToString("MM/dd/yyyy")</td>
+      </tr>
+     </tbody>
+    </table>
+    <div>
+     <a href="/person-details/@person.Name">Details</a>
+    </div>
+    
+   </div>
+  }
+
+  <div>
+     <a href="/person-with-product">Person with Product</a>
+    </div>
+ </div>
+
+</body>
+</html>

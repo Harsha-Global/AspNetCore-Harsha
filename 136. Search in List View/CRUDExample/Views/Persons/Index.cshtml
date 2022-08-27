@@ -1,0 +1,71 @@
+﻿@model IEnumerable<PersonResponse>
+
+@{
+ ViewBag.Title = "Persons";
+}
+<form action="~/persons/index" method="get">
+ <h1>Persons</h1>
+
+ <div class="box flex">
+  <div class="flex-1">
+   <select class="form-input" name="searchBy">
+    @foreach (var field in ViewBag.SearchFields)
+    {
+     if (field.Key == ViewBag.CurrentSearchBy)
+     {
+      <option value="@field.Key" selected="selected">@field.Value</option>
+     }
+     else
+     {
+      <option value="@field.Key">@field.Value</option>
+     }
+
+    }
+    @* Eg: searchBy=PersonName&searchString=abc *@
+   </select>
+  </div>
+
+  <div class="flex-1">
+   <input type="search" id="Search" class="form-input" placeholder="Search" name="searchString" value="@ViewBag.CurrentSearchString" />
+  </div>
+
+  <div class="flex-1">
+   <button class="button button-blue-back">Search</button>
+   <a href="~/persons/index" class="link-hover">Clear all</a>
+  </div>
+ </div>
+
+
+ <table class="table w-100 mt">
+  <thead>
+   <tr>
+    <th>Person Name</th>
+    <th>Email</th>
+    <th>Date of Birth</th>
+    <th>Age</th>
+    <th>Gender</th>
+    <th>Country</th>
+    <th>Address</th>
+    <th>Receive News Letters</th>
+   </tr>
+  </thead>
+  <tbody>
+   @foreach (PersonResponse person in Model)
+   {
+    <tr>
+     <td>@person.PersonName</td>
+     <td>@person.Email</td>
+     <td>@person.DateOfBirth?.ToString("dd MMM yyyy")</td>
+     <td>@person.Age</td>
+     <td>@person.Gender</td>
+     <td>@person.Country</td>
+     <td>@person.Address</td>
+     <td>@person.ReceiveNewsLetters</td>
+    </tr>
+   }
+   <tr></tr>
+  </tbody>
+
+ </table>
+</form>
+

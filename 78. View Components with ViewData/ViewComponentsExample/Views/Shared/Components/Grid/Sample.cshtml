@@ -1,0 +1,21 @@
+﻿<div class="box">
+ <h3>@ViewBag.Grid.GridTitle</h3>
+ <table class="table w-100">
+  <thead>
+   <tr>
+    <th>Sl. No</th>
+    <th>Name</th>
+   </tr>
+  </thead>
+  <tbody>
+   @foreach (Person person in ViewBag.Grid.Persons)
+   {
+    <tr>
+     <td>@person.PersonName</td>
+     <td>@person.JobTitle</td>
+    </tr>
+   }
+  </tbody>
+ </table>
+
+</div>
