@@ -1,0 +1,76 @@
+﻿@model List<Stock>
+
+@{
+ ViewBag.Title = "Explore";
+ ViewBag.CurrentUrl = "~/Explore";
+}
+
+
+<div class="flex">
+ <div class="flex-1">
+  <div class="text-grey ml">
+   <span>Stocks</span>
+   <i class="fa-solid fa-caret-right"></i>
+   <span>Explore</span>
+  </div>
+ </div>
+
+ <div class="flex-1 text-right">
+ </div>
+</div>
+
+
+
+<div class="flex stocks-list">
+ <div class="flex-1" id="stocks-list">
+  <div class="box">
+
+   <div class="flex">
+    <div class="flex-1">
+     <h4 class="text-grey mb">Stocks</h4>
+    </div>
+
+    <div class="flex-1 text-right">
+     <a href="~/Stocks/Explore?showAll=true" class="mr">Show all stocks</a>
+    </div>
+   </div>
+
+
+   <ul class="list">
+    @foreach (Stock stock in Model)
+    {
+     <li>
+      @if (Context.Request.Query.ContainsKey("showAll"))
+      {
+       <a href="~/Stocks/Explore/@stock.StockSymbol?showAll=@Context.Request.Query["showAll"]">
+        <h4>@stock.StockName</h4>
+        <div class="text-grey">(@stock.StockSymbol)</div>
+       </a>
+      }
+      else
+      {
+       <a href="~/Stocks/Explore/@stock.StockSymbol">
+        <h4>@stock.StockName</h4>
+        <div class="text-grey">(@stock.StockSymbol)</div>
+       </a>
+      }
+
+     </li>
+    }
+   </ul>
+
+   @if (Model.Count == 0)
+   {
+    <div class="mt text-blue">No stocks</div>
+   }
+  </div>
+
+ </div>
+
+ <div class="flex-1" id="stock-details">
+  @if (ViewBag.stock != null)
+  {
+   <vc:selected-stock stock-symbol="@ViewBag.stock"></vc:selected-stock>
+  }
+ </div>
+</div>

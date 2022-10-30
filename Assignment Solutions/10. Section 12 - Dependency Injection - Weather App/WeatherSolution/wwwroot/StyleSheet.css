@@ -1,0 +1,347 @@
+﻿body
+{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    background-color: #f7f7f7;
+}
+
+*
+{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.container
+{
+    min-width: 500px;
+}
+
+.navbar
+{
+    background-color: #cacaca;
+    padding: 10px;
+    box-shadow: 0px 1px 2px 2px #cacaca;
+}
+
+.navbar-brand
+{
+    margin: 0px 30px 5px 5px;
+    font-size: 1.1em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.navbar > ul
+{
+    list-style-type: none;
+    width: 100%;
+}
+
+.navbar > ul > li
+{
+    width: 100%;
+}
+
+.navbar > ul > li > a:link, .navbar > ul > li > a:visited
+{
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.4s;
+    display: inline-block;
+    margin: 0px 3px;
+    color: #1383a4;
+    text-decoration: none;
+}
+
+.navbar > ul > li > a:hover
+{
+    background-color: #ffffff;
+    color: #086581;
+}
+
+.nav-active
+{
+    background-color: #ececec;
+}
+
+.page-content
+{
+    padding: 10px;
+    min-height: 90vh;
+}
+
+.full-size-height
+{
+    min-height: 100vh;
+}
+
+.border-left
+{
+    border-left: 2px solid #cacaca;
+}
+
+.padding-left
+{
+    padding-left: 20px;
+}
+
+.margin-left
+{
+    margin-left: 30px;
+}
+
+.margin-top
+{
+    margin-top: 10px;
+}
+
+a:link, a:visited
+{
+    color: blue;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
+
+.table
+{
+    border-collapse: collapse;
+    border: 1px solid #ffffff;
+    padding: 5px;
+    box-shadow: 0px 0px 4px 2px #e4e4e4;
+    margin: 10px 0px;
+    margin: auto;
+}
+
+.table thead
+{
+    background-color: #727774;
+    color: #ffffff;
+}
+
+.table thead th
+{
+    padding: 5px 10px;
+    text-align: left;
+}
+
+.table tbody td
+{
+    padding: 6px 10px;
+}
+
+.table tbody tr
+{
+    transition: background-color 0.4s, color 0.3s;
+    background-color: #efefef;
+    border-bottom: 1px solid #ffffff;
+}
+
+.table tbody tr:hover
+{
+    background-color: #01759d;
+    color: #ffffff;
+}
+
+.w-25
+{
+    width: 25%;
+}
+
+.w-30
+{
+    width: 30%;
+}
+
+.w-50
+{
+    width: 50%;
+}
+
+.w-75
+{
+    width: 75%;
+}
+
+.w-90
+{
+    width: 90%;
+}
+
+.w-100
+{
+    width: 100%;
+}
+
+.padding-left-45
+{
+    padding-left: 45px;
+}
+
+.margin-top-200
+{
+    margin-top: 200px !important;
+}
+
+.inline-block
+{
+    display: inline-block;
+}
+
+.text-green
+{
+    color: #0a8438;
+}
+
+.text-red
+{
+    color: #ff0000;
+}
+
+.text-grey
+{
+    color: #a3a3a3;
+}
+
+.text-dark-grey
+{
+    color: #585858ff;
+}
+
+.cursor-pointer
+{
+    cursor: pointer;
+}
+
+.text-left
+{
+    text-align: left;
+}
+
+.text-right
+{
+    text-align: right;
+}
+
+.text-center
+{
+    text-align: center;
+}
+
+.margin-auto
+{
+    margin: auto;
+}
+
+.margin-bottom
+{
+    margin-bottom: 20px;
+}
+
+.float-left
+{
+    float: left;
+}
+
+.clear
+{
+    clear: both;
+}
+
+.blue-back
+{
+    background-color: #6cb7e6;
+}
+
+.green-back
+{
+    background-color: #e0ff8f;
+}
+
+.orange-back
+{
+    background-color: #faca70;
+}
+
+
+.footer-content
+{
+    background-color: #bfbfbf;
+    color: #000000;
+    padding: 20px;
+    text-align: center;
+}
+
+.header
+{
+    background-color: #055c87;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+}
+
+.box
+{
+    /*margin: 10px 20px;*/
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid #d3d1d1;
+    box-shadow: 0px 0px 3px 2px #ffffff;
+    min-width: 400px;
+}
+
+.flex
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    align-content: stretch;
+    align-items: stretch;
+}
+
+.flex > div
+{
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid #d3d1d1;
+    box-shadow: 0px 0px 3px 2px #ffffff;
+}
+
+.flex-borderless
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+    align-items: stretch;
+}
+
+.flex-borderless > div
+{
+    padding: 15px;
+}
+
+@media screen and (min-width: 1000px)
+{
+    .navbar-brand
+    {
+        display: inline-block;
+        margin-bottom: 0px;
+    }
+
+    .navbar > ul
+    {
+        display: inline-block;
+        width: auto;
+    }
+
+    .navbar > ul > li
+    {
+        display: inline-block;
+        width: auto;
+    }
+}

@@ -1,0 +1,73 @@
+﻿@model Orders
+
+@{
+ ViewBag.Title = "Orders";
+ ViewBag.CurrentUrl = "~/Trade/Orders";
+}
+
+
+<div class="flex">
+ <div class="flex-1">
+  <div class="text-grey ml">
+   <span>Stocks</span>
+   <i class="fa-solid fa-caret-right"></i>
+   <span>Orders</span>
+  </div>
+ </div>
+
+ <div class="flex-1 text-right">
+  <a asp-controller="Trade" asp-action="OrdersPDF" class="mr">Download as PDF</a>
+ </div>
+</div>
+
+
+
+<div class="flex orders-list">
+ <div id="buy-orders-list">
+  <div class="box">
+   <h4 class="text-grey mb">Buy Orders</h4>
+
+   @foreach (BuyOrderResponse buyOrder in Model.BuyOrders)
+   {
+    <div class="border-bottom p">
+     <h3><a href="~/Trade/Index/@buyOrder.StockSymbol">@buyOrder.StockName (@buyOrder.StockSymbol)</a></h3>
+     <h5 class="mb">@buyOrder.Quantity <span class="text-grey">shares at </span> $@buyOrder.Price.ToString("N")</h5>
+     <h5 class="mb"><span class="text-grey">Trade Amount: </span> $@buyOrder.TradeAmount.ToString("N")</h5>
+
+     <div class="text-grey">@buyOrder.DateAndTimeOfOrder.ToString("dd MMMM yyyy hh:mm:ss tt")</div>
+    </div>
+   }
+
+   @if (Model.BuyOrders.Count == 0)
+   {
+    <div class="mt text-blue">No orders</div>
+   }
+  </div>
+
+ </div>
+
+ <div id="sell-orders-list">
+  <div class="box">
+   <h4 class="text-grey mb">Sell Orders</h4>
+
+   @foreach (SellOrderResponse sellOrder in Model.SellOrders)
+   {
+    <div class="border-bottom p">
+     <h3><a href="~/Trade/Index/@sellOrder.StockSymbol">@sellOrder.StockName (@sellOrder.StockSymbol)</a></h3>
+
+     <h5 class="mb">@sellOrder.Quantity <span class="text-grey">shares at </span> $@sellOrder.Price.ToString("N")</h5>
+     <h5 class="mb"><span class="text-grey">Trade Amount: </span> $@sellOrder.TradeAmount.ToString("N")</h5>
+
+     <div class="text-grey">@sellOrder.DateAndTimeOfOrder.ToString("dd MMMM yyyy hh:mm:ss tt")</div>
+    </div>
+   }
+
+   @if (Model.SellOrders.Count == 0)
+   {
+    <div class="mt text-blue">No orders</div>
+   }
+  </div>
+
+ </div>
+</div>
+

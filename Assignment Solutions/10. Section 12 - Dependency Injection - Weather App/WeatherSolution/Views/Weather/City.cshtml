@@ -1,0 +1,35 @@
+﻿@model CityWeather
+
+@{
+ ViewBag.Title = "City Weather";
+ if (Model != null)
+ {
+  //prefix city name before the word "City Weather" in the page title
+  ViewBag.Title = Model.CityName + " | " + ViewBag.Title;
+ }
+}
+
+@if (Model != null)
+{
+ <div class="box cursor-pointer w-30 margin-auto margin-top-200">
+  <div class="flex-borderless">
+   <div class="w-50">
+    <h2>@Model.CityName</h2>
+    <h4 class="text-grey">@Model.DateAndTime.ToString("dd MMM yyyy")</h4>
+    <h4 class="text-grey">@Model.DateAndTime.ToString("hh:mm tt")</h4>
+   </div>
+   <div class="w-50 border-left">
+    <h1 class="margin-left">@Model.TemperatureFahrenheit <sup class="text-grey">&#8457</sup></h1>
+   </div>
+  </div>
+ </div>
+
+ <div class="text-center">
+  <a href="~/">Back to Weather Home Page</a>
+ </div>
+}
+else
+{
+ <h3>City Code is not valid.</h3>
+}
+

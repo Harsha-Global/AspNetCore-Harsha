@@ -1,0 +1,38 @@
+﻿@model StockTrade
+
+@{
+ ViewBag.Title = "Trading";
+ ViewBag.CurrentUrl = "~/Trade/Index";
+}
+
+
+<form method="post">
+ <div class="box trading-panel">
+
+  <div class="flex trading-panel-flex">
+   <div id="stock-price-panel">
+
+    <div class="stock">
+     <h1 class="stock-title">@Model.StockName (@Model.StockSymbol)</h1>
+     <h2 class="stock-price"><small class="text-grey">$</small> <span class="price">@Model.Price.ToString("N")</span></h2>
+    </div>
+
+    <div class="date"></div>
+   </div>
+
+
+  </div>
+ </div>
+
+
+ <input type="hidden" name="StockSymbol" id="StockSymbol" value="@Model.StockSymbol" />
+ <input type="hidden" id="FinnhubToken" value="@ViewBag.FinnhubToken" />
+
+</form>
+
+
+@section Scripts {
+ @* import the FinnhubScript.js file to update the price *@
+ <script src="~/Scripts/FinnhubScript.js">
+ </script>
+}

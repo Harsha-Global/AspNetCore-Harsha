@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CityWeather>
+
+@{
+ //local function: get css class based on ranges of fahrenheit value as instructed in the requirement
+ string GetCssClassByFahrenheit(int TemperatureFahrenheit)
+ {
+  return TemperatureFahrenheit switch
+  {
+   (< 44) => "blue-back",
+   (>= 44) and (< 75) => "green-back",
+   (>= 75) => "orange-back"
+  };
+ }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+ <meta name="viewport" content="width=device-width" />
+ <title>Weather</title>
+ <link href="~/StyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+ <div class="container">
+  <div class="page-content">
+   <div class="margin-bottom">
+    <h1>Weather</h1>
+   </div>
+
+   <div class="margin-top-200 margin-left">
+    <div class="flex">
+     @foreach (CityWeather city in Model)
+     {
+      <div class="box cursor-pointer w-30 @GetCssClassByFahrenheit(city.TemperatureFahrenheit)">
+       <div class="flex-borderless">
+        <div class="w-50">
+         <h2>@city.CityName</h2>
+         <h4 class="text-dark-grey">@city.DateAndTime.ToString("hh:mm tt")</h4>
+         <a href="~/weather/@city.CityUniqueCode" class="margin-top">Details</a>
+        </div>
+        <div class="w-50 border-left">
+         <h1 class="margin-left">@city.TemperatureFahrenheit <sup class="text-grey">&#8457</sup></h1>
+        </div>
+       </div>
+
+      </div>
+     }
+
+    </div>
+   </div>
+  </div>
+
+ </div>
+</body>
+</html>
+
+
+
+
+
+
