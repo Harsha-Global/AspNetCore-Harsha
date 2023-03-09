@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+ <meta name="viewport" content="width=device-width" />
+ <title>@ViewBag.Title</title>
+ <link href="~/Stylesheet.css" rel="stylesheet" />
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+ <div class="container">
+  <div class="page-content">
+
+   <div class="margin-bottom">
+    <div class="flex" id="top-bar-div">
+     <div class="flex-1" id="app-title-div">
+      <h1 class="app-title">
+       <i class="fa-solid fa-people-simple"></i>
+       Contacts Manager
+      </h1>
+     </div>
+
+
+     <div class="flex-1 pr" id="search-box-div">
+      <div class="navbar account-links">
+
+       <ul>
+        @if (User.Identity.IsAuthenticated)
+        {
+         <li>
+          <i class="fa-solid fa-user"></i>
+          @User.Identity?.Name
+         </li>
+         <li>
+          <a asp-controller="Account" asp-action="Logout">Logout</a>
+         </li>
+        }
+        else
+        {
+         @if (ViewBag.CurrentUrl == "~/Account/Register")
+         {
+          <li>
+           <a asp-controller="Account" asp-action="Register" class="nav-active">Register</a>
+          </li>
+         }
+         else
+         {
+          <li>
+           <a asp-controller="Account" asp-action="Register">Register</a>
+          </li>
+         }
+
+
+         @if (ViewBag.CurrentUrl == "~/Account/Login")
+         {
+          <li>
+           <a asp-controller="Account" asp-action="Login" class="nav-active">Login</a>
+          </li>
+         }
+         else
+         {
+          <li>
+           <a asp-controller="Account" asp-action="Login">Login</a>
+          </li>
+         }
+
+        }
+       </ul>
+
+      </div>
+
+     </div>
+    </div>
+
+   </div>
+
+
+   <div class="navbar mb">
+
+    <ul>
+     @if (ViewBag.CurrentUrl == "~/Persons/Index")
+     {
+      <li>
+       <a asp-controller="Persons" asp-action="Index" class="nav-active">Persons</a>
+      </li>
+     }
+     else
+     {
+      <li>
+       <a asp-controller="Persons" asp-action="Index">Persons</a>
+      </li>
+     }
+
+
+     @if (ViewBag.CurrentUrl == "~/Countries/UploadFromExcel")
+     {
+      <li>
+       <a asp-controller="Countries" asp-action="UploadFromExcel" class="nav-active">Upload Countries</a>
+      </li>
+     }
+     else
+     {
+      <li>
+       <a asp-controller="Countries" asp-action="UploadFromExcel">Upload Countries</a>
+      </li>
+     }
+
+    </ul>
+   </div>
+
+   <div class="body">
+    @RenderBody()
+   </div>
+  </div>
+ </div>
+
+ @RenderSection("scripts", required: false)
+</body>
+</html>
