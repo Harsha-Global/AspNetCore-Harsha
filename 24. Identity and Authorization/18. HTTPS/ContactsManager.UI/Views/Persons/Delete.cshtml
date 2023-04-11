@@ -1,0 +1,83 @@
+﻿@model PersonResponse
+
+@{
+ ViewBag.Title = "Delete Person";
+ ViewBag.CurrentUrl = "~/Persons/Delete";
+}
+
+
+<!-- breadcrumb starts -->
+<div class="flex">
+ <div class="flex-1">
+  <div class="text-grey">
+   <span>Contacts</span>
+   <i class="fa-solid fa-caret-right"></i>
+   <span class="text-grey">Persons</span>
+   <i class="fa-solid fa-caret-right"></i>
+   <span class="text-grey">Delete</span>
+  </div>
+ </div>
+</div>
+<!-- breadcrumb ends -->
+
+
+
+<div class="form-container">
+
+ <a asp-controller="Persons" asp-action="Index" class="link-hover">Back to Persons List</a>
+ <h2 class="text-large">Delete Person</h2>
+ <h3>Are you sure to delete this person?</h3>
+
+ <form asp-controller="Persons" asp-action="Delete" method="post">
+
+  <input type="hidden" asp-for="PersonID" />
+
+  @*PersonName*@
+  <div class="form-field flex">
+   <div class="w-25">
+    <label asp-for="PersonName" class="form-label pt">Person Name</label>
+   </div>
+   <div class="flex-1">
+    <input asp-for="PersonName" class="form-input" disabled="disabled" />
+    <span asp-validation-for="PersonName" class="text-red"></span>
+   </div>
+  </div>
+
+
+  @*Email*@
+  <div class="form-field flex">
+   <div class="w-25">
+    <label asp-for="Email" class="form-label pt">Email</label>
+   </div>
+   <div class="flex-1">
+    <input asp-for="Email" class="form-input" disabled="disabled" />
+    <span asp-validation-for="Email" class="text-red"></span>
+   </div>
+  </div>
+
+
+  @*Submit*@
+  <div class="form-field flex">
+   <div class="w-25">
+   </div>
+   <div class="flex-1">
+    <button class="button button-red-back">Delete</button>
+
+    <div asp-validation-summary="All" class="text-red"></div>
+
+    @if (ViewBag.Errors != null)
+    {
+     <div class="text-red ml">
+      <ul>
+       @foreach (string error in ViewBag.Errors)
+       {
+        <li class="ml">@error</li>
+       }
+      </ul>
+     </div>
+    }
+   </div>
+  </div>
+
+ </form>
+</div>
