@@ -1,0 +1,50 @@
+<div class="w-75 margin-auto">
+  <div class="form-container">
+
+    <h2>Login</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="loginSubmitted()">
+
+
+      <!-- email -->
+      <div class="form-field flex">
+        <div class="w-25">
+          <label for="email" class="form-label pt">Email</label>
+        </div>
+
+        <div class="flex-1">
+          <input type="text" id="email" class="form-input" formControlName="email" />
+          <span class="text-red" *ngIf="(login_emailControl.touched || isLoginFormSubmitted) && (login_emailControl.errors?.['required'])">Email can't be blank</span>
+        </div>
+      </div>
+
+
+
+      <!-- password -->
+      <div class="form-field flex">
+        <div class="w-25">
+          <label for="password" class="form-label pt">Password</label>
+        </div>
+
+        <div class="flex-1">
+          <input type="password" id="password" class="form-input" formControlName="password" />
+          <span class="text-red" *ngIf="(login_passwordControl.touched || isLoginFormSubmitted) && (login_passwordControl.errors?.['required'])">Password can't be blank</span>
+        </div>
+      </div>
+
+
+
+      <!-- submit -->
+      <div class="form-field flex">
+        <div class="w-25">
+        </div>
+
+        <div class="flex-1">
+          <button type="submit" class="button button-green-back">Login</button>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+</div>

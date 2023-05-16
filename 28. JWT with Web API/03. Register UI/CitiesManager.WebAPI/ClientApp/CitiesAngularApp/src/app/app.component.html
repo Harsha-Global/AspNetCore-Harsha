@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="page-content">
+
+    <div class="margin-bottom">
+      <div class="flex">
+
+        <div class="flex-1" id="top-bar-div">
+          <h2 class="app-title">
+            Cities Manager
+          </h2>
+        </div>
+
+        <div class="flex-1" id="search-box-div">
+          <div class="navbar account-links">
+
+            <ul>
+              <li>
+                <a [routerLink]="[ '/login' ]">Login</a>
+              </li>
+
+              <li>
+                <a [routerLink]="[ '/register' ]">Register</a>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="navbar mb">
+      <ul>
+        <li>
+          <a [routerLink]="[ '/cities']" [routerLinkActive]="[ 'nav-active']">Cities</a>
+        </li>
+      </ul>
+    </div>
+
+
+    <div class="body">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
