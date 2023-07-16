@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="OrderItemsService.cs" />
+    <Compile Remove="OrdersService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RepositoryContracts\RepositoryContracts.csproj" />
+    <ProjectReference Include="..\ServiceContracts\ServiceContracts.csproj" />
+  </ItemGroup>
+
+</Project>
