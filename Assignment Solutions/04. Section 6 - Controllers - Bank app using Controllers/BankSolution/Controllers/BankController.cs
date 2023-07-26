@@ -30,24 +30,49 @@ namespace BankSolution.Controllers
    return File("~/statement.pdf", "application/pdf");
   }
 
-  //When request is received at path "/get-current-balance/{accountNumber}"
   [Route("/get-current-balance/{accountNumber:int?}")]
-  public IActionResult GetCurrentBalance(int? accountNumber)
+  public IActionResult GetCurrentBalance()
   {
-   //hard-coded data
-   var bankAccount = new { accountNumber = 1001, accountHolderName = "Example Name", currentBalance = 5000 };
+   // Get the 'accountNumber' value from the route parameters using RouteData
+   object accountNumberObj;
+   if (HttpContext.Request.RouteValues.TryGetValue("accountNumber", out accountNumberObj) && accountNumberObj is string accountNumber)
+   {
+    // Check if the 'accountNumber' parameter is provided
+    if (string.IsNullOrEmpty(accountNumber))
+    {
+     return NotFound("Account Number should be supplied");
+    }
 
-   //if accountNumber is null, return HTTP 404
-   if (accountNumber == null)
-    return NotFound("Account Number should be supplied");
+    // Convert the 'accountNumber' to an integer
+    if (int.TryParse(accountNumber, out int accountNumberInt))
+    {
+     // Hard-coded data
+     var bankAccount = new { accountNumber = 1001, accountHolderName = "Example Name", currentBalance = 5000 };
 
-
-   if (accountNumber == 1001)
-    //if accountNumber is 1001, return the current balance value
-    return Content(bankAccount.currentBalance.ToString());
+     if (accountNumberInt == 1001)
+     {
+      // If accountNumber is 1001, return the current balance value
+      return Content(bankAccount.currentBalance.ToString());
+     }
+     else
+     {
+      // If accountNumber is not 1001, return HTTP 400
+      return BadRequest("Account Number should be 1001");
+     }
+    }
+    else
+    {
+     // If the 'accountNumber' provided in the route parameter is not a valid integer, return HTTP 400
+     return BadRequest("Invalid Account Number format");
+    }
+   }
    else
-    //if accountNumber is not 1001, return HTTP 400
-    return BadRequest("Account Number should be 1001");
+   {
+    // If 'accountNumber' is not found in the route parameters, handle the error
+    // For example, redirect to an error page or return a specific error message
+    // return RedirectToAction("Error");
+    return NotFound("Account Number should be supplied");
+   }
   }
  }
 }
