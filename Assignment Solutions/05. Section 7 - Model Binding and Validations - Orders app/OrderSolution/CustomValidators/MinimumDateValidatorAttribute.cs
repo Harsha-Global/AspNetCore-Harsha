@@ -22,8 +22,8 @@ namespace OrderSolution.CustomValidators
     //get the value of "OrderDate" property
     DateTime orderDate = (DateTime)value;
 
-    //if the value of "OrderDate" property is greater than minimumDate
-    if (orderDate > MinimumDate)
+    //if the value of "OrderDate" property is less than MinimumDate
+    if (orderDate < MinimumDate)
     {
      //return validation error
      return new ValidationResult(string.Format(ErrorMessage ?? DefaultErrorMessage, MinimumDate.ToString("yyyy-MM-dd")), new string[] { nameof(validationContext.MemberName) });
