@@ -1,0 +1,81 @@
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+//Routing is automatically enabled.
+//No need for app.UseRouting() anymore
+
+// Eg: files/sample.txt
+app.Map("files/{filename}.{extension}", async context =>
+{
+ string? fileName = Convert.ToString(context.Request.RouteValues["filename"]);
+ string? extension = Convert.ToString(context.Request.RouteValues["extension"]);
+
+ await context.Response.WriteAsync($"In files - {fileName} - {extension}");
+});
+
+
+//Eg: employee/profile/john
+app.Map("employee/profile/{EmployeeName:length(4, 7):alpha=scott}", async context =>
+{
+ string? employeeName = Convert.ToString(context.Request.RouteValues["employeename"]);
+ await context.Response.WriteAsync($"In Employee profile - {employeeName}");
+});
+
+
+//Eg: products/details/1
+app.Map("products/details/{id:int:range(1, 1000)?}", async context =>
+{
+ if (context.Request.RouteValues.ContainsKey("id"))
+ {
+  int id = Convert.ToInt32(context.Request.RouteValues["id"]);
+  await context.Response.WriteAsync($"Product details - {id}");
+ }
+ else
+ {
+  await context.Response.WriteAsync($"Product details - id is not supplied");
+ }
+});
+
+
+//Eg: daily-digest-report/{reportdate}
+app.Map("daily-digest-report/{reportdate:datetime}", async (context) => 
+{
+ DateTime reportDate = Convert.ToDateTime(context.Request.RouteValues["reportdate"]);
+
+ await context.Response.WriteAsync($"In daily-digest-report - {reportDate.ToShortDateString()}");
+});
+
+
+//Eg: cities/{cityid}
+app.Map("cities/{cityid:guid}", async (context) => 
+{
+ Guid cityId = Guid.Parse(Convert.ToString(context.Request.RouteValues["cityid"])!);
+ await context.Response.WriteAsync($"City information - {cityId}");
+});
+
+
+//Eg: sales-report/2030/apr
+app.Map("sales-report/{year:int:min(1900)}/{month:regex(^(apr|jul|oct|jan)$)}", async context =>
+{
+ int year = Convert.ToInt32(context.Request.RouteValues["year"]);
+ string? month = Convert.ToString(context.Request.RouteValues["month"]);
+
+ if (month == "apr" || month == "jul" || month == "oct" || month == "jan")
+ {
+  await context.Response.WriteAsync($"sales report - {year} - {month}");
+ }
+ else
+ {
+  await context.Response.WriteAsync($"{month} month is not allowed for sales report");
+ }
+});
+
+
+//Fallback for any other requests
+app.MapFallback(async (context) =>
+{
+ await context.Response.WriteAsync($"No route matched at {context.Request.Path}");
+});
+
+
+app.Run();

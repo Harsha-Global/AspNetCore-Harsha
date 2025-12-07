@@ -1,23 +1,21 @@
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-//enable routing
-app.UseRouting();
+//Routing is automatically enabled.
+//No need for app.UseRouting() anymore
 
 //creating endpoints
-app.UseEndpoints(endpoints =>
-{
-  //add your endpoints here
-  endpoints.MapGet("map1", async (context) => {
-    await context.Response.WriteAsync("In Map 1");
-  });
-
-  endpoints.MapPost("map2", async (context) => {
-    await context.Response.WriteAsync("In Map 2");
-  });
+app.MapGet("map1", async (context) => {
+ await context.Response.WriteAsync("In Map 1");
 });
 
-app.Run(async context => {
-  await context.Response.WriteAsync($"Request received at {context.Request.Path}");
+app.MapPost("map2", async (context) => {
+ await context.Response.WriteAsync("In Map 2");
 });
+
+//Fallback for any other requests
+app.MapFallback(async context => {
+ await context.Response.WriteAsync($"Request received at {context.Request.Path}");
+});
+
 app.Run();

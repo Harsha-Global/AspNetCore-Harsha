@@ -1,13 +1,10 @@
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-//enable routing
-app.UseRouting();
+//Routing is automatically enabled.
+//No need for app.UseRouting() anymore
 
-//creating endpoints
-app.UseEndpoints(endpoints =>
-{
-  //add your endpoints here
+//Endpoints are defined directly on the "app" object.
+//We will add endpoints here in the next lecture.
 
-});
 app.Run();
