@@ -15,7 +15,6 @@ builder.Services.AddScoped<ICitiesService, CitiesService>();
 var app = builder.Build();
 
 app.UseStaticFiles();
-app.UseRouting();
 app.MapControllers();
 
 app.Run();

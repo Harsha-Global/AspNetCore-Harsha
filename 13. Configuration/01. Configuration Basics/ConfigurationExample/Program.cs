@@ -5,18 +5,13 @@ var app = builder.Build();
 
 
 app.UseStaticFiles();
-app.UseRouting();
-app.UseEndpoints(endpoints => {
+app.Map("/", async context =>
+{
+  await context.Response.WriteAsync(app.Configuration["mykEY"] + "\n");
 
-  endpoints.Map("/", async context =>
-  {
-    await context.Response.WriteAsync(app.Configuration["mykEY"] + "\n");
+  await context.Response.WriteAsync(app.Configuration.GetValue<string>("MyKey") + "\n");
 
-    await context.Response.WriteAsync(app.Configuration.GetValue<string>("MyKey") + "\n");
-
-    await context.Response.WriteAsync(app.Configuration.GetValue<int>("x", 10) + "\n");
-
-  });
+  await context.Response.WriteAsync(app.Configuration.GetValue<int>("x", 10) + "\n");
 
 });
 

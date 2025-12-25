@@ -9,7 +9,6 @@ if (app.Environment.IsDevelopment() || app.Environment.IsStaging() || app.Enviro
 }
 
 app.UseStaticFiles();
-app.UseRouting();
 app.MapControllers();
 
 app.Run();

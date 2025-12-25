@@ -9,7 +9,6 @@ if (builder.Environment.IsDevelopment())
 }
 
 app.UseStaticFiles();
-app.UseRouting();
 app.MapControllers();
 
 app.Run();
