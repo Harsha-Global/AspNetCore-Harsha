@@ -73,7 +73,7 @@ namespace CRUDTests
    };
 
    //Assert
-   await action.Should().ThrowAsync<ArgumenNullException>();
+   await action.Should().ThrowAsync<ArgumentNullException>();
   }
 
 
