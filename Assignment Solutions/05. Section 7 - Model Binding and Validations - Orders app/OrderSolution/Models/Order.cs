@@ -10,7 +10,7 @@ namespace OrderSolution.Models
 
   [Required(ErrorMessage = "{0} can't be blank")]
   [Display(Name = "Order Date")]
-  [MinimumDateValidator("2000-01-01", ErrorMessage = "Order Date should be greater than or equal to 2000")] //custom validator
+  [MinimumDateValidator("2000-01-01", ErrorMessage = "Order Date should be greater than or equal to {0}")] //custom validator
   public DateTime OrderDate { get; set; }
 
   [Required(ErrorMessage = "{0} can't be blank")]
