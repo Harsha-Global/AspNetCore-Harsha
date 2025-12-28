@@ -47,7 +47,6 @@ if (builder.Environment.IsEnvironment("Test") == false)
 app.UseStaticFiles();
 
 
-app.UseRouting(); //Identifying action method based on route
 app.UseAuthentication(); //Reading Identity cookie
 app.UseAuthorization(); //Validates access permissions of the user
 app.MapControllers(); //Execute the filter pipiline (action + filters)

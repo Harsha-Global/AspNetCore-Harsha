@@ -94,7 +94,7 @@ namespace CRUDTests
   #region Create
 
   [Fact]
-  public async void Create_IfNoModelErrors_ToReturnRedirectToIndex()
+  public async Task Create_IfNoModelErrors_ToReturnRedirectToIndex()
   {
    //Arrange
    PersonAddRequest person_add_request = _fixture.Create<PersonAddRequest>();
