@@ -1,6 +1,6 @@
+using Asp.Versioning;
 using CitiesManager.WebAPI.DatabaseContext;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +15,7 @@ builder.Services.AddControllers(options => {
 
 
 //Enable versioning in Web API controllers
-builder.Services.AddApiVersioning(config =>
+var apiVersioningBuilder = builder.Services.AddApiVersioning(config =>
 {
  config.ApiVersionReader = new UrlSegmentApiVersionReader(); //Reads version number from request url at "apiVersion" constraint
 
@@ -28,16 +28,14 @@ builder.Services.AddApiVersioning(config =>
 });
 
 
-
+//Swagger
+builder.Services.AddEndpointsApiExplorer(); //Generates description for all endpoints
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
  options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 });
 
-
-//Swagger
-builder.Services.AddEndpointsApiExplorer(); //Generates description for all endpoints
 
 
 builder.Services.AddSwaggerGen(options => {
