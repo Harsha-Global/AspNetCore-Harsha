@@ -8,12 +8,11 @@ using Repositories;
 var builder = WebApplication.CreateBuilder(args);
 
 //Logging
-builder.Host.ConfigureLogging(loggingProvider => {
- loggingProvider.ClearProviders();
- loggingProvider.AddConsole();
- loggingProvider.AddDebug();
- loggingProvider.AddEventLog();
-});
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
+builder.Logging.AddEventLog();
+
 
 
 builder.Services.AddControllersWithViews();
@@ -50,7 +49,6 @@ if (builder.Environment.IsEnvironment("Test") == false)
  Rotativa.AspNetCore.RotativaConfiguration.Setup("wwwroot", wkhtmltopdfRelativePath: "Rotativa");
 
 app.UseStaticFiles();
-app.UseRouting();
 app.MapControllers();
 
 app.Run();

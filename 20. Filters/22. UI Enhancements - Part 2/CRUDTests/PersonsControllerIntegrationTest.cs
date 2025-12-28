@@ -33,7 +33,7 @@ namespace CRUDTests
    HttpResponseMessage response = await _client.GetAsync("/Persons/Index");
 
    //Assert
-   response.Should().BeSuccessful(); //2xx
+   response.IsSuccessStatusCode.Should().BeTrue(); //2xx
 
    string responseBody = await response.Content.ReadAsStringAsync();
 
